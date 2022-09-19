@@ -1,0 +1,33 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css');
+@import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css');
+@import "fonts.scss";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .sidebar-active-item {
+    @apply bg-green-50/25;
+  }
+
+  .sidebar-active-item svg {
+    @apply fill-white;
+  }
+
+  .closeable-trigger-open .closeable-indicator-open, .closeable-indicator-closed {
+    display: initial;
+  }
+
+  .closeable-trigger-open .closeable-indicator-closed, .closeable-indicator-open {
+    @apply hidden;
+  }
+}

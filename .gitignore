@@ -1,0 +1,8 @@
+node_modules
+vendor
+smarty/cache/*
+smarty/compile/*
+composer.lock
+yarn.lock
+config/database.php
+.idea

@@ -1,0 +1,17 @@
+{
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "nickb",
+      "email": "nickbethke5599@gmail.com"
+    }
+  ],
+  "require": {
+    "smarty/smarty": "^4.2",
+    "symfony/filesystem": "^6.0",
+    "tracy/tracy": "^2.9",
+    "ext-mysqli": "*"
+  }
+}
