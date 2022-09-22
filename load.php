@@ -9,6 +9,14 @@ mysqli_report(MYSQLI_REPORT_ERROR);
 define("ABSPATH", dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define("DEBUG", true);
 
+
+if (version_compare(phpversion(), '8.1.0', '<')) {
+    require_once ABSPATH . "components/abstract/cli/Runnable.php";
+    echo CLI\Runnable::header(true);
+    echo "PHP Version to low<br/>Currently running PHP version <b>" . phpversion() . "</b><br/> Please use 8.1.0 or higher";
+    exit;
+}
+
 if (file_exists(ABSPATH . "_public/install.php")) {
     echo "Please install project white with the CLI in folder /bin via <br> php /bin/cli.php install";
     exit;

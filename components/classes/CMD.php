@@ -45,7 +45,7 @@ class CMD
     public static function run(): void
     {
         global $argv;
-        require_once ABSPATH . "components/abstract/cli/Runnable.php";
+
         if (sizeof($argv) > 1) {
             $args = array_slice($argv, 1);
             $action = explode("::", $args[0])[0];
@@ -53,9 +53,9 @@ class CMD
 
             if (sizeof($args) > 1) {
                 $action_args = $args;
-                $action_args[0] = join("::",array_slice(explode("::", $args[0]), 1));
+                $action_args[0] = join("::", array_slice(explode("::", $args[0]), 1));
             } else {
-                $action_args = join("::",array_slice(explode("::", $args[0]), 1));
+                $action_args = join("::", array_slice(explode("::", $args[0]), 1));
             }
             if (method_exists("CMD", $action)) {
                 CMD::$action($action_args);
