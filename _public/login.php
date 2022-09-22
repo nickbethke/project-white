@@ -8,7 +8,7 @@ if ($post && sizeof($post) > 0) {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $h = Session::login($email, $password) ? "/" : "/login.php?state=false";
-    header("Location: " . $h);
+    header("Location: " . get_option('home_url') . $h);
     die();
 }
 
