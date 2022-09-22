@@ -16,6 +16,36 @@ class DataBaseUser extends DataBaseType
         $stmt->execute();
     }
 
+    public static function deactivate(int $id)
+    {
+        global $db;
+        $SQL = "UPDATE pw_users SET user_role = ? WHERE user_id = ?";
+        $stmt = $db->prepare($SQL);
+        $role = -1;
+        $stmt->bind_param("ii", $role, $id);
+
+        $stmt->execute();
+    }
+
+    public static function get_all_Ids()
+    {
+        global $db;
+        $SQL = "SELECT user_id FROM pw_users WHERE user_role <> ?";
+        $stmt = $db->prepare($SQL);
+        $role = -1;
+        $stmt->bind_param("i", $role);
+
+        $stmt->execute();
+
+        $r = $stmt->get_result();
+        $ids = [];
+        while ($id = $r->fetch_assoc()) {
+            $id = $id['user_id'];
+            $ids[] = $id;
+        }
+        return $ids;
+    }
+
     function get_table_name(): string
     {
         return "pw_users";
@@ -42,10 +72,10 @@ class DataBaseUser extends DataBaseType
     static function user_exists(int $id): bool
     {
         global $db;
-        $SQL = "SELECT user_id FROM pw_users WHERE user_id = ? LIMIT 1";
+        $SQL = "SELECT user_id FROM pw_users WHERE user_id = ? AND user_role <> ? LIMIT 1";
         $stmt = $db->prepare($SQL);
-
-        $stmt->bind_param("i", $id);
+        $role = -1;
+        $stmt->bind_param("ii", $id, $role);
 
         $stmt->execute();
 

@@ -66,9 +66,11 @@ class DataBaseOptions extends DataBaseType
         if (empty($option)) {
             return false;
         }
+        if ($optionCache instanceof OptionsCache) {
 
-        if ($optionCache->in_cache($option)) {
-            return $optionCache->get_cached_option($option);
+            if ($optionCache->in_cache($option)) {
+                return $optionCache->get_cached_option($option);
+            }
         }
 
         $SQL = "SELECT `option_value` FROM `pw_options` WHERE `option_name` = ? LIMIT 1";

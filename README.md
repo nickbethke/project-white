@@ -16,3 +16,11 @@ git clone https://github.com/nickbethke/project-white.git
 cd project-white
 composer install
 ```
+
+### via CLI
+
+```
+php ./bin/cli.php install
+```
+
+### via Web 

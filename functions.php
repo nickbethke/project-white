@@ -52,26 +52,31 @@ function get_post_vars(): bool|array|null
 
 function favicon()
 {
-    return '<link rel="apple-touch-icon" sizes="180x180" href="/content/img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/content/img/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/content/img/favicon/favicon-16x16.png">
-<link rel="manifest" href="/content/img/favicon/site.webmanifest" crossorigin="use-credentials">
-<link rel="mask-icon" href="/content/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="/content/img/favicon/favicon.ico">
+    return '<link rel="apple-touch-icon" sizes="180x180" href="' . get_option('home_url') . 'content/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="' . get_option('home_url') . 'content/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="' . get_option('home_url') . 'content/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="' . get_option('home_url') . 'content/img/favicon/site.webmanifest" crossorigin="use-credentials">
+<link rel="mask-icon" href="' . get_option('home_url') . 'content/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="' . get_option('home_url') . 'content/img/favicon/favicon.ico">
 <meta name="msapplication-TileColor" content="#603cba">
-<meta name="msapplication-config" content="/content/img/favicon/browserconfig.xml">
+<meta name="msapplication-config" content="' . get_option('home_url') . 'content/img/favicon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 <meta name = "description" content = "The perfect project-management tool for all your projects." >
-<meta property = "og:url" content = "https://project-white.ntk-music.de" >
+<meta property = "og:url" content = "' . get_option('home_url') . '" >
 <meta property = "og:type" content = "website" >
 <meta property = "og:title" content = "Project White" >
 <meta property = "og:description" content = "The perfect project-management tool for all your projects." >
-<meta property = "og:image" content = "https://project-white.ntk-music.de/content/img/og-image.png" >
+<meta property = "og:image" content = "' . get_option('home_url') . 'content/img/og-image.png" >
 <meta name = "twitter:card" content = "summary_large_image" >
 <meta property = "twitter:domain" content = "project-white.ntk-music.de" >
-<meta property = "twitter:url" content = "https://project-white.ntk-music.de" >
+<meta property = "twitter:url" content = "' . get_option('home_url') . '" >
 <meta name = "twitter:title" content = "Project White" >
 <meta name = "twitter:description" content = "The perfect project-management tool for all your projects." >
-<meta name = "twitter:image" content = "https://project-white.ntk-music.de/content/img/og-image.png" >
+<meta name = "twitter:image" content = "' . get_option('home_url') . 'content/img/og-image.png" >
 ';
+}
+
+function is_installed(): bool
+{
+    return file_exists(ABSPATH . "_public/install.php");
 }

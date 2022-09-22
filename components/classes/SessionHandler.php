@@ -31,7 +31,7 @@ class Session
         $r = $stmt->get_result();
         if ($r->num_rows) {
             $user = new User($r->fetch_assoc()['user_id']);
-            if ($user instanceof User && $user->verify_password($password)) {
+            if ($user->verify_password($password) && $user->getRole() != User::STATUS_DEACTIVATED) {
                 Session::getInstance()->set_user($user);
                 return true;
             }

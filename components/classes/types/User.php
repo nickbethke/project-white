@@ -12,7 +12,7 @@ class User
     private string $activation_key = "";
     private int $role = 0;
 
-    const STATUS_USER = 0, STATUS_ADMIN = 1;
+    const STATUS_USER = 0, STATUS_ADMIN = 1, STATUS_DEACTIVATED = -1;
 
 
     public function __construct(int $id)
@@ -43,6 +43,19 @@ class User
         } else {
             return null;
         }
+    }
+
+    /**
+     * @return User[]
+     */
+    public static function get_all_active(): array
+    {
+        $ids = DataBaseUser::get_all_Ids();
+        $users = [];
+        foreach ($ids as $id) {
+            $users[] = new User($id);
+        }
+        return $users;
     }
 
     public function is_activated(): bool
@@ -139,6 +152,11 @@ class User
         } else {
             return false;
         }
+    }
+
+    public function deactivate(): void
+    {
+        DataBaseUser::deactivate($this->id);
     }
 
 }
