@@ -130,8 +130,6 @@ const DB_HOST= '$db_host';";
 
     private function check_database_connection($db_host, $db_name, $db_user, $db_password): bool
     {
-        require_once ABSPATH . "config/database.php";
-
         try {
             $db = @new \mysqli($db_host, $db_user, $db_password, $db_name);
         } catch (\Exception $e) {
