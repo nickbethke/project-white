@@ -2,7 +2,7 @@
     <aside class="w-72 h-screen fixed" aria-label="Sidebar">
         <div class="overflow-y-auto py-4 px-3 bg-gray-800 h-[100%]">
             <a href="{$home_url}" class="flex items-center pl-2.5 mb-5">
-                <img src="/content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
+                <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
             </a>
             <ul class="space-y-2">

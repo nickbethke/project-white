@@ -9,14 +9,14 @@
         <div class="grid-cols-1 md:grid-cols-2 justify-center items-center h-full w-screen grid">
             <div class="hidden md:block">
                 <picture class="w-full h-screen">
-                    <source type="image/png" srcset="/content/img/project-white.png">
-                    <source type="image/jpeg" srcset="/content/img/project-white.jpg">
-                    <img class="object-cover w-full h-screen" src="/content/img/project-white.webp" alt="project white">
+                    <source type="image/png" srcset="{$home_url}content/img/project-white.png">
+                    <source type="image/jpeg" srcset="{$home_url}content/img/project-white.jpg">
+                    <img class="object-cover w-full h-screen" src="{$home_url}content/img/project-white.webp" alt="project white">
                 </picture>
             </div>
             <div class="mx-auto md:w-1/3">
                 <div class="flex flex-wrap justify-center">
-                    <img src="/content/img/logo.png" alt="Project White Logo" srcset="/content/img/logo.png"
+                    <img src="{$home_url}content/img/logo.png" alt="Project White Logo" srcset="{$home_url}content/img/logo.png"
                          class="w-16">
 
                 </div>
@@ -26,7 +26,7 @@
                         <p>You have entered an invalid email or password</p>
                     </div>
                 {/if}
-                <form method="POST" action="login.php">
+                <form method="POST" action="{$home_url}login.php">
                     <!-- Email input -->
                     <div class="mb-6">
                         <label>
