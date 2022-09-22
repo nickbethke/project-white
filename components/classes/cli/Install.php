@@ -75,7 +75,7 @@ class Install extends Runnable
 
         \Notification::create("Welcome to Project White", $admin_id, $admin_id, "");
 
-        rename(ABSPATH . "_public/install.php", ABSPATH . "_public/install-backup.php");
+        file_exists(ABSPATH . "_public/install.php") && rename(ABSPATH . "_public/install.php", ABSPATH . "_public/install-backup.php");
 
         require_once ABSPATH . "functions.php";
 
