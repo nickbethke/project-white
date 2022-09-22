@@ -6,8 +6,14 @@ class DataBaseCore
     {
         global $db;
         if ($result = $db->query("SHOW TABLES LIKE '" . $table . "'")) {
-            return (bool) $result->num_rows == 1;
+            return (bool)$result->num_rows == 1;
         }
         return false;
+    }
+
+    static function create_from_SQL($sql): bool
+    {
+        global $db;
+
     }
 }

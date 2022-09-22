@@ -17,7 +17,13 @@ class DatabaseLoader extends Loader
 
     protected function get_includes(): array
     {
-        return [ABSPATH . "components/abstract/database/DataBaseType.php", ABSPATH . "components/classes/database/DataBaseCore.php", ABSPATH . "components/classes/database/DataBaseUser.php"];
+        return [
+            ABSPATH . "components/abstract/database/DataBaseType.php",
+            ABSPATH . "components/classes/database/DataBaseCore.php",
+            ABSPATH . "components/classes/database/DataBaseUser.php",
+            ABSPATH . "components/classes/database/DataBaseNotifications.php",
+            ABSPATH . "components/classes/database/DataBaseOptions.php"
+        ];
     }
 
     /**

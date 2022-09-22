@@ -13,6 +13,4 @@
     </div>
 </main>
 
-<script src="/content/js/menu.js"></script>
-
 </body>

@@ -13,13 +13,16 @@
     </div>
     <div class="border border-t-0 bg-white px-4 py-8">
         <div class="container mx-auto">
-            <div class="font-bold">{$notification->getFrom()->getFirstname()} {$notification->getFrom()->getSurname()}</div>
+            <div class="font-bold">
+                {if $notification->getFrom()->getId() == $user->getId()}
+                    Project White
+                {else}
+                    {$notification->getFrom()->getFirstname()} {$notification->getFrom()->getSurname()}
+                {/if}</div>
             <div class="text-2xl font-bold my-4">{$notification->getTitle()}</div>
             <div>{$notification->getContent()|nl2br}</div>
         </div>
     </div>
 </main>
-
-<script src="/content/js/menu.js"></script>
 
 </body>

@@ -4,9 +4,20 @@ class OptionsCache
 {
     private array $cache = [];
 
-    public function __construct()
+    private static OptionsCache $instance;
+
+    public static function getInstance($auto_init = true): OptionsCache
     {
-        $this->auto_init();
+        if (!isset(self::$instance)) {
+            self::$instance = new self;
+        }
+        $auto_init && self::$instance->auto_init();
+        return self::$instance;
+    }
+
+    public function __construct($auto_init = true)
+    {
+        $auto_init && $this->auto_init();
     }
 
     private function auto_init(): void

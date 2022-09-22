@@ -29,11 +29,12 @@ class Session
         $stmt->execute();
 
         $r = $stmt->get_result();
-
-        $user = new User($r->fetch_assoc()['user_id']);
-        if ($user instanceof User && $user->verify_password($password)) {
-            Session::getInstance()->set_user($user);
-            return true;
+        if ($r->num_rows) {
+            $user = new User($r->fetch_assoc()['user_id']);
+            if ($user instanceof User && $user->verify_password($password)) {
+                Session::getInstance()->set_user($user);
+                return true;
+            }
         }
         return false;
     }
@@ -41,7 +42,7 @@ class Session
     public static function logout($redirect = false): void
     {
         Session::getInstance()->set_user(null);
-        if($redirect){
+        if ($redirect) {
             header("Location: /login.php");
             die();
         }
@@ -63,7 +64,12 @@ class Session
 
     public function get_user(): User|null
     {
-        return new User($_SESSION['user']);
+        if (DataBaseUser::user_exists($_SESSION['user'])) {
+            return new User($_SESSION['user']);
+        } else {
+            return null;
+        }
+
     }
 
     private
@@ -77,8 +83,7 @@ class Session
         }
     }
 
-    public
-    static function getInstance(): Session
+    public static function getInstance(): Session
     {
         if (!isset(self::$instance)) {
             self::$instance = new self;

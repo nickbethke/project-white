@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./smarty/templates/**/*.tpl", "./smarty/templates/*.tpl"],
+    content: [
+        "./smarty/templates/**/*.tpl",
+        "./smarty/templates/*.tpl",
+        "./_public/content/js/*.js",
+        "./_public/content/js/**/*.js"
+    ],
     theme: {
         fontFamily: {
             'sans': ['Open Sans', 'sans-serif']

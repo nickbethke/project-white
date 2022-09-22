@@ -3,9 +3,9 @@
 class CacheLoader extends Loader
 {
 
-    public function load(): OptionsCache
+    public function load($auto = true): OptionsCache
     {
-        return new OptionsCache();
+        return OptionsCache::getInstance($auto);
     }
 
     protected function get_includes(): array
@@ -13,11 +13,11 @@ class CacheLoader extends Loader
         return [ABSPATH . "components/classes/OptionsCache.php"];
     }
 
-    public static function call(): OptionsCache
+    public static function call($auto = true): OptionsCache
     {
         $self = new self;
         $self->load_includes($self->get_includes());
-        return $self->load();
+        return $self->load($auto);
 
     }
 }

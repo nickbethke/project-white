@@ -7,6 +7,4 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<script src="/content/js/menu.js"></script>
-
 </body>

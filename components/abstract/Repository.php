@@ -7,17 +7,17 @@ abstract class Repository implements Iterator
 
     public abstract function get(int $id);
 
-    public function current()
+    #[ReturnTypeWillChange] public function current()
     {
         return $this->repo[$this->position];
     }
 
-    public function next()
+    #[ReturnTypeWillChange] public function next()
     {
         ++$this->position;
     }
 
-    public function key()
+    #[ReturnTypeWillChange] public function key()
     {
         return $this->position;
     }
@@ -27,7 +27,7 @@ abstract class Repository implements Iterator
         return isset($this->repo[$this->position]);
     }
 
-    public function rewind()
+    #[ReturnTypeWillChange] public function rewind()
     {
         $this->position = 0;
     }

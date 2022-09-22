@@ -142,5 +142,18 @@ class Notification
         return $stmt->execute();
     }
 
+    static function create(string $title, int $from, int $to, string $content, $status = Notification::STATUS_NEW, $type = Notification::TYPE_NORMAL): bool
+    {
+        global $db;
+
+        $SQL = "INSERT INTO pw_notifications (notification_from, notification_to,notification_title,notification_content,notification_datetime,notification_status,notification_type) VALUES (?,?,?,?,?,?,?)";
+
+        $stmt = $db->prepare($SQL);
+
+        $format = (new DateTime())->format("Y-m-d H:i:s");
+        $stmt->bind_param("iisssii", $from, $to, $title, $content, $format, $status, $type);
+
+        return $stmt->execute();
+    }
 
 }

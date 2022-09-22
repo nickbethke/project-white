@@ -21,6 +21,11 @@
 
                 </div>
                 <h1 class="text-center text-2xl my-2">Project White - Login</h1>
+                {if $success == false}
+                    <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 px-4 py-2 my-4" role="alert">
+                        <p>You have entered an invalid email or password</p>
+                    </div>
+                {/if}
                 <form method="POST" action="login.php">
                     <!-- Email input -->
                     <div class="mb-6">

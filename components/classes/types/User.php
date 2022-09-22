@@ -127,5 +127,18 @@ class User
         return password_verify($password, $this->password);
     }
 
+    public function activate(): void
+    {
+        DataBaseUser::activate($this->id);
+    }
+
+    public static function getByEMail($email): User|false
+    {
+        if ($id = DataBaseUser::get_user_id_by_email($email)) {
+            return new User($id);
+        } else {
+            return false;
+        }
+    }
 
 }

@@ -4,30 +4,21 @@ class Options
 {
     static function get_option(string $option, mixed $default = false): mixed
     {
-        global $db, $optionCache;
+        return (new DataBaseOptions())->get_option($option, $default);
+    }
 
-        if (empty($option)) {
-            return false;
-        }
+    static function set_option(string $option, mixed $value, $autoload = false): bool
+    {
+        return (new DataBaseOptions())->set_option($option, $value, $autoload);
+    }
 
-        if ($optionCache->in_cache($option)) {
-            return $optionCache->get_cached_option($option);
-        }
+    static function option_exists(string $option): bool
+    {
+        return (new DataBaseOptions())->option_exists($option);
+    }
 
-        $SQL = "SELECT `option_value` FROM `pw_options` WHERE `option_name` = ? LIMIT 1";
-
-
-        $stmt = $db->prepare($SQL);
-        $stmt->bind_param("s", $option);
-
-        $stmt->execute();
-
-        $r = $stmt->get_result();
-
-        if ($r->num_rows < 1) {
-            return $default;
-        } else {
-            return $r->fetch_assoc()['option_value'];
-        }
+    public static function update_option(string $name, mixed $value, bool $autoload): bool
+    {
+        return (new DataBaseOptions())->update_option($name, $value, $autoload);
     }
 }

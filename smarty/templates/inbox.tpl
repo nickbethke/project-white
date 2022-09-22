@@ -65,7 +65,11 @@
                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 leading-4"/>
                         </div>
                         <div class="p-4 leading-4 w-64 border-r">
-                            {$not->getFrom()->getFirstname()} {$not->getFrom()->getSurname()}
+                            {if $not->getFrom()->getId() == $user->getId()}
+                                Project White
+                            {else}
+                                {$not->getFrom()->getFirstname()} {$not->getFrom()->getSurname()}
+                            {/if}
                         </div>
                         <div class="p-4 leading-4">
                             {$not->getTitle()}
@@ -79,7 +83,4 @@
         {/if}
     </div>
 </main>
-
-<script src="/content/js/menu.js"></script>
-
 </body>

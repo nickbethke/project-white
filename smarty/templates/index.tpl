@@ -30,11 +30,17 @@
             <div class="p-4 w-full">
                 <h3 class="text-xl">Project Status</h3>
                 <div class="h-80 w-full">
-                    <div id="time-flow" class=""></div>
+                    <div id="time-flow"></div>
                 </div>
             </div>
         </div>
         <div class="bg-white border flex justify-start items-center">
+            <div class="p-4 w-full">
+                <h3 class="text-xl">Team Status</h3>
+                <div class="h-80 w-full">
+                    <div id="team-flow"></div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

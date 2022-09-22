@@ -21,4 +21,10 @@ class NotificationLoader extends Loader
         $self->load_includes($self->get_includes());
         return $self->load();
     }
+
+    public static function include(): void
+    {
+        $self = new self;
+        $self->load_includes($self->get_includes());
+    }
 }
