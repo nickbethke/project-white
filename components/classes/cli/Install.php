@@ -64,6 +64,7 @@ class Install extends Runnable
         $this->create_option('home_url', $home_url, true);
 
         require_once ABSPATH . "components/loader/TypesLoader.php";
+        \TypesLoader::call();
         $admin_id = $this->create_admin();
 
         echo "\t\t > Create welcome notification" . PHP_EOL;
