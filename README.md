@@ -5,7 +5,7 @@
 
 
 ---
-## Installation {#installation}
+## Installation
 
 ```
 git clone https://github.com/nickbethke/project-white.git
