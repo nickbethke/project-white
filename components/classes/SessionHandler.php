@@ -43,7 +43,7 @@ class Session
     {
         Session::getInstance()->set_user(null);
         if ($redirect) {
-            header("Location: /login.php");
+            header("Location: " . get_option('home_url') . "/login.php");
             die();
         }
     }
