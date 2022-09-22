@@ -9,6 +9,11 @@ mysqli_report(MYSQLI_REPORT_ERROR);
 define("ABSPATH", dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define("DEBUG", true);
 
+if (file_exists(ABSPATH . "installing.php")) {
+    echo "Please install project white with the CLI in folder /bin via <br> php /bin/cmd.php install";
+    exit;
+}
+
 require_once ABSPATH . "components/abstract/Loader.php";
 
 require_once ABSPATH . "components/loader/SmartyLoader.php";
@@ -49,4 +54,4 @@ $smarty->assign("title", get_option('title', "Project White"));
 $smarty->assign("home_url", get_option('home_url'));
 $smarty->assign("selected_page", "home");
 
-$smarty->assign('favicon',favicon());
+$smarty->assign('favicon', favicon());

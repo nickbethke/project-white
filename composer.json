@@ -1,4 +1,5 @@
 {
+  "name": "project-white/project-white",
   "description": "description",
   "minimum-stability": "stable",
   "license": "proprietary",
@@ -12,6 +13,7 @@
     "smarty/smarty": "^4.2",
     "symfony/filesystem": "^6.0",
     "tracy/tracy": "^2.9",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "php-parallel-lint/php-console-color": "v1.0.1"
   }
 }
