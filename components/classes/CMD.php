@@ -46,6 +46,8 @@ class CMD
     {
         global $argv;
 
+        print("\033[2J\033[;H");
+
         if (sizeof($argv) > 1) {
             $args = array_slice($argv, 1);
             $action = explode("::", $args[0])[0];

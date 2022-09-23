@@ -23,15 +23,11 @@ class Install extends Runnable
         }
         $this->color = new ConsoleColor();
 
-        print("\033[2J\033[;H");
-
         echo $this->color->apply(self::INFO, "\n\tInstalling project white" . PHP_EOL);
 
         echo "\t══════════════════════════════════════════════════════════════════" . PHP_EOL;
         echo "\t > CREATE CONFIGURATIONS\n";
         echo "\t══════════════════════════════════════════════════════════════════" . PHP_EOL;
-
-        // TODO Database config
 
         require_once ABSPATH . "components/abstract/Loader.php";
         require_once ABSPATH . "components/loader/DatabaseLoader.php";
