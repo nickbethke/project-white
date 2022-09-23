@@ -5,6 +5,8 @@ namespace CLI;
 use DatabaseLoader;
 use DataBaseUser;
 use InitPHP\CLITable\Table;
+use Notification;
+use NotificationLoader;
 use OptionsLoader;
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
@@ -17,6 +19,9 @@ class User extends Runnable
 {
     private ConsoleColor $color;
 
+    /**
+     * @throws InvalidStyleException
+     */
     public static function run(mixed $args): void
     {
         new User($args);
@@ -38,10 +43,16 @@ class User extends Runnable
                 $this->list();
                 break;
             case "create":
-                $this->create_user();
+                $id = $this->create_user();
+                require_once ABSPATH . "components/loader/NotificationLoader.php";
+                NotificationLoader::include();
+                Notification::create("Welcome to Project White", $id, $id, "");
                 break;
             case "create::admin":
-                $this->create_user(true);
+                $id = $this->create_user(true);
+                require_once ABSPATH . "components/loader/NotificationLoader.php";
+                NotificationLoader::include();
+                Notification::create("Welcome to Project White", $id, $id, "");
                 break;
             default:
                 echo Runnable::header();
