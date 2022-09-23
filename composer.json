@@ -15,6 +15,7 @@
     "tracy/tracy": "^2.9",
     "ext-mysqli": "*",
     "php-parallel-lint/php-console-color": "v1.0.1",
-    "initphp/cli-table": "1.0"
+    "initphp/cli-table": "1.0",
+    "phpmailer/phpmailer": "v6.6.4"
   }
 }

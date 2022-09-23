@@ -2,6 +2,9 @@
 
 namespace CLI;
 
+use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
+use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
+
 abstract class Runnable
 {
     const INFO = 'color_10';
@@ -29,6 +32,34 @@ abstract class Runnable
         fclose($handle);
         return trim($line);
 
+    }
+
+    /**
+     * @throws InvalidStyleException
+     */
+    public static function input_select(string $msg, string $indent = "", string ...$options): string
+    {
+        echo $msg . PHP_EOL;
+
+        $i = 0;
+        foreach ($options as $o) {
+            echo $indent . (new ConsoleColor())->apply(self::WARNING, $i) . " " . $o . PHP_EOL;
+
+            $i++;
+        }
+
+        $i = sizeof($options) - 1;
+
+        echo $indent . "Select (0-" . $i . "): ";
+
+        $handle = fopen("php://stdin", "r");
+        $line = fgets($handle);
+        fclose($handle);
+        if (intval(trim($line)) > 0 && intval(trim($line)) <= $i) {
+            return $options[intval(trim($line))];
+        } else {
+            return self::input_select($msg, $indent, ...$options);
+        }
     }
 
     public static function header($html = false): string

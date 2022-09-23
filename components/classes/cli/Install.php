@@ -15,6 +15,7 @@ use NotificationLoader;
 use Options;
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
+use PHPMailer\PHPMailer\PHPMailer;
 use TypesLoader;
 use function get_option;
 
@@ -69,6 +70,25 @@ class Install extends Runnable
 
         $home_url = self::input($this->color->apply(self::TODO, "\t\t\t Home URL"));
         $this->create_option('home_url', $home_url, true);
+
+        if (self::prompt($this->color->apply(self::TODO, "\t\t\tConfigure SMTP credentials?"))) {
+
+            $smtp_host = self::input($this->color->apply(self::TODO, "\t\t\t\t SMTP Host"));
+            $this->create_option('smtp_host', $smtp_host, true);
+
+            $smtp_user = self::input($this->color->apply(self::TODO, "\t\t\t\t SMTP User"));
+            $this->create_option('smtp_user', $smtp_user, true);
+
+            $smtp_password = self::input($this->color->apply(self::TODO, "\t\t\t\t SMTP Password"));
+            $this->create_option('smtp_password', $smtp_password, true);
+
+            $smtp_encryption = self::input_select($this->color->apply(self::TODO, "\t\t\t\t SMTP Encryption"), "\t\t\t\t\t", PHPMailer::ENCRYPTION_SMTPS, PHPMailer::ENCRYPTION_STARTTLS);
+            $this->create_option('smtp_port', $smtp_encryption, true);
+
+            $smtp_port = self::input($this->color->apply(self::TODO, "\t\t\t\t SMTP Port"));
+            $this->create_option('smtp_port', $smtp_port, true);
+
+        }
 
         require_once ABSPATH . "components/loader/TypesLoader.php";
         TypesLoader::call();
