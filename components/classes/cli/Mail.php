@@ -73,16 +73,16 @@ class Mail extends Runnable
                 $mail->setHTML($smarty->fetch("mail/test-mail.tpl"));
                 if ($mail->send()) {
                     echo PHP_EOL . $this->color->apply(self::INFO, "\t\t ●") . ' Connected ok!';
-                    echo PHP_EOL . $this->color->apply(self::INFO, "\t\t ●") . ' Email sent!';
+                    echo PHP_EOL . $this->color->apply(self::INFO, "\t\t ●") . ' Email sent!' . PHP_EOL;
                 } else {
                     throw new \Exception();
                 }
             } catch (\Exception $e) {
                 echo $e->getMessage();
-                echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . " Email could not be sent";
+                echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . " Email could not be sent" . PHP_EOL;
             }
         } else {
-            echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . " Email could not be sent";
+            echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . " Email could not be sent" . PHP_EOL;
         }
     }
 
