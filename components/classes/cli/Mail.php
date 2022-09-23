@@ -132,13 +132,13 @@ class Mail extends Runnable
             //If server supports authentication, do it (even if no encryption)
             if (is_array($e) && array_key_exists('AUTH', $e)) {
                 if ($smtp->authenticate(\get_option('smtp_user'), \get_option('smtp_password'))) {
-                    echo PHP_EOL . $this->color->apply(self::INFO, "\t\t ●") . ' Connected ok!';
+                    echo PHP_EOL . $this->color->apply(self::INFO, "\t\t ●") . ' Connected ok!' . PHP_EOL;
                 } else {
                     throw new Exception('Authentication failed: ' . $smtp->getError()['error']);
                 }
             }
         } catch (Exception $e) {
-            echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . ' SMTP error: ' . $e->getMessage(), "\n";
+            echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . ' SMTP error: ' . $e->getMessage() . PHP_EOL;
         }
 //Whatever happened, close the connection.
         $smtp->quit();
