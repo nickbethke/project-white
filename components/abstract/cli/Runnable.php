@@ -10,6 +10,7 @@ abstract class Runnable
     const INFO = 'color_10';
     // --Commented out by Inspection (23.09.2022 02:47):const DEFAULT = 'color_15';
     const WARNING = 'color_220';
+    const ALERT = 'color_9';
     const TODO = 'color_14';
 
     abstract public static function run(mixed $args): void;

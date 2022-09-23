@@ -83,7 +83,7 @@ class Install extends Runnable
             $this->create_option('smtp_password', $smtp_password, true);
 
             $smtp_encryption = self::input_select($this->color->apply(self::TODO, "\t\t\t\t SMTP Encryption"), "\t\t\t\t\t", PHPMailer::ENCRYPTION_SMTPS, PHPMailer::ENCRYPTION_STARTTLS);
-            $this->create_option('smtp_port', $smtp_encryption, true);
+            $this->create_option('smtp_encryption', $smtp_encryption, true);
 
             $smtp_port = self::input($this->color->apply(self::TODO, "\t\t\t\t SMTP Port"));
             $this->create_option('smtp_port', $smtp_port, true);

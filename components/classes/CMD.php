@@ -29,10 +29,19 @@ class CMD
         CLI\Help::run($args);
     }
 
+    /**
+     * @throws InvalidStyleException
+     */
     public static function user($args): void
     {
         require_once ABSPATH . "components/classes/cli/User.php";
         CLI\User::run($args);
+    }
+
+    public static function mail($args): void
+    {
+        require_once ABSPATH . "components/classes/cli/Mail.php";
+        CLI\Mail::run($args);
     }
 
     /**
