@@ -48,7 +48,7 @@ class User extends Runnable
 
         require_once ABSPATH . "components/loader/CacheLoader.php";
         require_once ABSPATH . "components/loader/OptionsLoader.php";
-        OptionsLoader::call();
+        \OptionsLoader::call();
         require_once ABSPATH . "functions.php";
 
         global $db;
