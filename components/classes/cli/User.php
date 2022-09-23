@@ -45,6 +45,12 @@ class User extends Runnable
         require_once ABSPATH . "components/abstract/Loader.php";
         require_once ABSPATH . "components/loader/DatabaseLoader.php";
         require_once ABSPATH . "components/loader/TypesLoader.php";
+
+        require_once ABSPATH . "components/loader/CacheLoader.php";
+        require_once ABSPATH . "components/loader/OptionsLoader.php";
+        OptionsLoader::call();
+        require_once ABSPATH . "functions.php";
+
         global $db;
         $db = \DatabaseLoader::call();
 
