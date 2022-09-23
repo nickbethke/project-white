@@ -1,14 +1,16 @@
 <?php
 
 
+use Tracy\Debugger;
+
 class DebuggerLoader extends Loader
 {
 
     public function load(): bool|null
     {
-        \Tracy\Debugger::getBar()->addPanel(new CachePanel());
-        \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT);
-        \Tracy\Debugger::$dumpTheme = 'dark';
+        Debugger::getBar()->addPanel(new CachePanel());
+        Debugger::enable(Debugger::DEVELOPMENT);
+        Debugger::$dumpTheme = 'dark';
         return null;
     }
 

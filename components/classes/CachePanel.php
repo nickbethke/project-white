@@ -1,8 +1,10 @@
 <?php
 
+use Tracy\IBarPanel;
+
 require_once ABSPATH . "vendor/tracy/tracy/src/Tracy/Bar/IBarPanel.php";
 
-class CachePanel implements \Tracy\IBarPanel
+class CachePanel implements IBarPanel
 {
 
     function getTab(): string
@@ -45,7 +47,7 @@ class CachePanel implements \Tracy\IBarPanel
         return $r;
     }
 
-    static function get_directory_size($path)
+    static function get_directory_size($path): int
     {
         $bytesTotal = 0;
         $path = realpath($path);
@@ -57,7 +59,7 @@ class CachePanel implements \Tracy\IBarPanel
         return $bytesTotal;
     }
 
-    static function format_bytes($bytes, $precision = 2)
+    static function format_bytes($bytes, $precision = 2): string
     {
         if ($bytes < 1) {
             return "0 B";

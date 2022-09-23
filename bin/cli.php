@@ -13,4 +13,7 @@ require_once ABSPATH . "vendor/autoload.php";
 
 require_once ABSPATH . "components/classes/CMD.php";
 
-CMD::run();
+try {
+    CMD::run();
+} catch (\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException $e) {
+}

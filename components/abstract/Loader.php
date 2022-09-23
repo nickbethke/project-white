@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+
 abstract class Loader
 {
     abstract public function load(): mixed;
@@ -15,7 +17,7 @@ abstract class Loader
             if (file_exists($include)) {
                 require_once $include;
             } else {
-                throw new \Symfony\Component\Filesystem\Exception\FileNotFoundException("File Not Found", 1, null, $include);
+                throw new FileNotFoundException("File Not Found", 1, null, $include);
             }
         }
     }

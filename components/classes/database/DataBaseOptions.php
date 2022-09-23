@@ -40,7 +40,7 @@ class DataBaseOptions extends DataBaseType
 
     }
 
-    function update_option($name, $value, $autoload = false): bool
+    function update_option($name, $value): bool
     {
         if ($this->option_exists($name)) {
             global $db;

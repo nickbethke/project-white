@@ -1,8 +1,10 @@
 <?php
 
+use Tracy\IBarPanel;
+
 require_once ABSPATH . "vendor/tracy/tracy/src/Tracy/Bar/IBarPanel.php";
 
-class UserPanel implements \Tracy\IBarPanel
+class UserPanel implements IBarPanel
 {
 
     function getTab(): string

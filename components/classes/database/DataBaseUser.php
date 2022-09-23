@@ -11,8 +11,9 @@ class DataBaseUser extends DataBaseType
     public static function activate(int $id)
     {
         global $db;
-        $SQL = "UPDATE pw_users SET user_activation_key = ''";
+        $SQL = "UPDATE pw_users SET user_activation_key = '' WHERE user_id = ?";
         $stmt = $db->prepare($SQL);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
     }
 
@@ -27,7 +28,7 @@ class DataBaseUser extends DataBaseType
         $stmt->execute();
     }
 
-    public static function get_all_Ids()
+    public static function get_all_Ids(): array
     {
         global $db;
         $SQL = "SELECT user_id FROM pw_users WHERE user_role <> ?";
@@ -87,7 +88,7 @@ class DataBaseUser extends DataBaseType
     /**
      * @param int $userID
      * @param bool $assoc
-     * @return DataBaseUserType|array
+     * @return DataBaseUserType|array|null
      */
     public static function get_user(int $userID, bool $assoc = false): stdClass|array|null
     {

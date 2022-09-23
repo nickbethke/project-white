@@ -2,14 +2,25 @@
 
 namespace CLI;
 
+use DatabaseLoader;
+use DataBaseNotifications;
+use DataBaseOptions;
+use DataBaseUser;
+use Exception;
 use JetBrains\PhpStorm\NoReturn;
-use \PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
+use mysqli;
+use mysqli_sql_exception;
+use Notification;
+use NotificationLoader;
+use Options;
+use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
+use TypesLoader;
+use function get_option;
 
 class Install extends Runnable
 {
     private ConsoleColor $color;
-    private $db;
 
     /**
      * @throws InvalidStyleException
@@ -39,9 +50,9 @@ class Install extends Runnable
         echo "\t > CREATE DATABASE TABLES\n";
         echo "\t══════════════════════════════════════════════════════════════════" . PHP_EOL;
 
-        $this->create_db(new \DataBaseUser(), 'Users');
-        $this->create_db(new \DataBaseOptions(), 'Options');
-        $this->create_db(new \DataBaseNotifications(), 'Notifications');
+        $this->create_db(new DataBaseUser(), 'Users');
+        $this->create_db(new DataBaseOptions(), 'Options');
+        $this->create_db(new DataBaseNotifications(), 'Notifications');
 
 
         echo "\t══════════════════════════════════════════════════════════════════" . PHP_EOL;
@@ -60,29 +71,29 @@ class Install extends Runnable
         $this->create_option('home_url', $home_url, true);
 
         require_once ABSPATH . "components/loader/TypesLoader.php";
-        \TypesLoader::call();
+        TypesLoader::call();
         $admin_id = $this->create_admin();
 
         echo "\t\t > Create welcome notification" . PHP_EOL;
 
         require_once ABSPATH . "components/loader/NotificationLoader.php";
 
-        \NotificationLoader::include();
+        NotificationLoader::include();
 
-        \Notification::create("Welcome to Project White", $admin_id, $admin_id, "");
+        Notification::create("Welcome to Project White", $admin_id, $admin_id, "");
 
         file_exists(ABSPATH . "_public/install.php") && rename(ABSPATH . "_public/install.php", ABSPATH . "_public/install-backup.php");
 
         require_once ABSPATH . "functions.php";
 
-        echo $this->color->apply(self::INFO, "\n\tProject White installed" . PHP_EOL . "\tvisit " . \get_option('home_url') . " and login with your user information.");
+        echo $this->color->apply(self::INFO, "\n\tProject White installed" . PHP_EOL . "\tvisit " . get_option('home_url') . " and login with your user information.");
 
     }
 
     /**
      * @throws InvalidStyleException
      */
-    private function db_config(): \mysqli
+    private function db_config(): mysqli
     {
         echo "\t\t > Create Database Config" . PHP_EOL;
 
@@ -96,7 +107,7 @@ class Install extends Runnable
             $this->read_write_database_config();
         }
 
-        return \DatabaseLoader::call();
+        return DatabaseLoader::call();
     }
 
     /**
@@ -128,8 +139,8 @@ const DB_HOST= '$db_host';";
     private function check_database_connection($db_host, $db_name, $db_user, $db_password): bool
     {
         try {
-            $db = @new \mysqli($db_host, $db_user, $db_password, $db_name);
-        } catch (\Exception $e) {
+            $db = @new mysqli($db_host, $db_user, $db_password, $db_name);
+        } catch (Exception) {
             return false;
         }
         if ($db->connect_errno) {
@@ -138,6 +149,9 @@ const DB_HOST= '$db_host';";
         return true;
     }
 
+    /**
+     * @throws InvalidStyleException
+     */
     public function create_db($class, $name): void
     {
         global $db;
@@ -145,7 +159,7 @@ const DB_HOST= '$db_host';";
         $success = true;
         try {
             $db->query($class->get_create_SQL());
-        } catch (\mysqli_sql_exception $e) {
+        } catch (mysqli_sql_exception) {
             $success = false;
             echo $this->color->apply(self::WARNING, "\t\t\t ! Table already exists" . PHP_EOL);
             if (self::prompt("\t\t\t Purge and create?")) {
@@ -169,15 +183,15 @@ const DB_HOST= '$db_host';";
     public function create_option($name, $value, $autoload = false): void
     {
         echo "\t\t\t Create option '" . $name . "' with value: " . $value . PHP_EOL;
-        if (\Options::option_exists($name)) {
+        if (Options::option_exists($name)) {
             if (self::prompt($this->color->apply(self::WARNING, "\t\t\t\t ! Option already exists - override?"))) {
-                \Options::update_option($name, $value, $autoload);
+                Options::update_option($name, $value, $autoload);
                 echo $this->color->apply(self::WARNING, "\t\t\t\t > Option updated" . PHP_EOL);
             } else {
                 echo $this->color->apply(self::WARNING, "\t\t\t\t > Option not created" . PHP_EOL);
             }
         } else {
-            \Options::set_option($name, $value, $autoload);
+            Options::set_option($name, $value, $autoload);
             echo $this->color->apply(self::INFO, "\t\t\t\t > Option '" . $name . "' created" . PHP_EOL);
         }
     }
@@ -199,8 +213,8 @@ const DB_HOST= '$db_host';";
 
             if ($password == $password_repeat) {
                 if ($user = \User::create_user($nickname, $password, $firstname, $surname, $email, false, \User::STATUS_ADMIN)) {
-                    return $user->getId();
                     echo $this->color->apply(self::INFO, "\t\t\t > Admin has been created" . PHP_EOL);
+                    return $user->getId();
                 } else {
                     echo $this->color->apply(self::WARNING, "\t\t\t ! A user with the same email or nickname already exists" . PHP_EOL);
                     return self::create_admin();

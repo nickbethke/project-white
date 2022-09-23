@@ -2,7 +2,7 @@
 
 require_once "../load.php";
 
-$activationKey = filter_input(INPUT_GET, 'key', FILTER_SANITIZE_STRING);
+$activationKey = filter_input(INPUT_GET, 'key');
 $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_EMAIL);
 
 if (!$email || !$activationKey) {

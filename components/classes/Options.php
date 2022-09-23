@@ -17,8 +17,8 @@ class Options
         return (new DataBaseOptions())->option_exists($option);
     }
 
-    public static function update_option(string $name, mixed $value, bool $autoload): bool
+    public static function update_option(string $name, mixed $value): bool
     {
-        return (new DataBaseOptions())->update_option($name, $value, $autoload);
+        return (new DataBaseOptions())->update_option($name, $value);
     }
 }

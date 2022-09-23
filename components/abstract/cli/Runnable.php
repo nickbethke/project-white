@@ -5,7 +5,7 @@ namespace CLI;
 abstract class Runnable
 {
     const INFO = 'color_10';
-    const DEFAULT = 'color_15';
+    // --Commented out by Inspection (23.09.2022 02:47):const DEFAULT = 'color_15';
     const WARNING = 'color_220';
     const TODO = 'color_14';
 

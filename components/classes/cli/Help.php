@@ -3,10 +3,14 @@
 namespace CLI;
 
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
+use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
 
 class Help extends Runnable
 {
 
+    /**
+     * @throws InvalidStyleException
+     */
     public static function run(mixed $args): void
     {
         echo self::header();

@@ -6,8 +6,6 @@ abstract class DataBaseType
 
     public function __construct()
     {
-        global $db;
-
         $this->exists = DataBaseCore::table_exists($this->get_table_name());
     }
 

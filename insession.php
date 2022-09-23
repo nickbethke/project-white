@@ -1,8 +1,11 @@
 <?php
 
-Session::check_user_state() ? null : Session::logout(true);
-\Tracy\Debugger::getBar()->addPanel(new UserPanel());
+use Tracy\Debugger;
 
+!Session::check_user_state() && Session::logout(true);
+Debugger::getBar()->addPanel(new UserPanel());
+
+global $session, $smarty;
 if ($session->get_user() == null) {
     $session->logout();
     header("Loaction: " . get_option("home_url"));

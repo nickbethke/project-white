@@ -2,8 +2,15 @@
 
 namespace CLI;
 
+use DatabaseLoader;
+use DataBaseUser;
 use InitPHP\CLITable\Table;
-use \PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
+use OptionsLoader;
+use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
+use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
+use TypesLoader;
+use function get_option;
+use function mail;
 
 
 class User extends Runnable
@@ -15,6 +22,9 @@ class User extends Runnable
         new User($args);
     }
 
+    /**
+     * @throws InvalidStyleException
+     */
     public function __construct($args)
     {
         $this->color = new ConsoleColor();
@@ -40,6 +50,9 @@ class User extends Runnable
         }
     }
 
+    /**
+     * @throws InvalidStyleException
+     */
     private function create_user(bool $admin = false): int
     {
         require_once ABSPATH . "components/abstract/Loader.php";
@@ -48,13 +61,13 @@ class User extends Runnable
 
         require_once ABSPATH . "components/loader/CacheLoader.php";
         require_once ABSPATH . "components/loader/OptionsLoader.php";
-        \OptionsLoader::call();
+        OptionsLoader::call();
         require_once ABSPATH . "functions.php";
 
         global $db;
-        $db = \DatabaseLoader::call();
+        $db = DatabaseLoader::call();
 
-        \TypesLoader::call();
+        TypesLoader::call();
         echo self::header();
         echo $admin ? "\t > Create Admin" . PHP_EOL : "\t > Create User" . PHP_EOL;
 
@@ -69,7 +82,7 @@ class User extends Runnable
 
             if ($password == $password_repeat) {
                 if ($user = \User::create_user($nickname, $password, $firstname, $surname, $email, !$admin, $admin ? \User::STATUS_ADMIN : \User::STATUS_USER)) {
-                    !$admin && \mail($email, "Project White - User Activation", "A user has been created for you.<br> <a href='" . \get_option('home_url') . "/activate.php?key=" . $user->getActivationKey() . "&email=" . $email . "'>Activate</a>");
+                    !$admin && mail($email, "Project White - User Activation", "A user has been created for you.<br> <a href='" . get_option('home_url') . "/activate.php?key=" . $user->getActivationKey() . "&email=" . $email . "'>Activate</a>");
                     echo $this->color->apply(self::INFO, "\t\t > User has been created" . PHP_EOL);
                     return $user->getId();
                 } else {
@@ -87,20 +100,23 @@ class User extends Runnable
         }
     }
 
+    /**
+     * @throws InvalidStyleException
+     */
     private function drop_user()
     {
         require_once ABSPATH . "components/abstract/Loader.php";
         require_once ABSPATH . "components/loader/DatabaseLoader.php";
         require_once ABSPATH . "components/loader/TypesLoader.php";
         global $db;
-        $db = \DatabaseLoader::call();
+        $db = DatabaseLoader::call();
 
-        \TypesLoader::call();
+        TypesLoader::call();
         echo self::header();
         echo "\t > Drop User" . PHP_EOL;
 
         $id = self::input($this->color->apply(self::TODO, "\t\tUser ID"));
-        if ($id && \DataBaseUser::user_exists($id)) {
+        if ($id && DataBaseUser::user_exists($id)) {
             $user = new \User($id);
             $user->deactivate();
             if (self::prompt($this->color->apply(self::TODO, "\t\t > Drop user " . $user->getFirstname() . " " . $user->getSurname() . " (" . $id . ")"))) {
@@ -113,15 +129,18 @@ class User extends Runnable
         }
     }
 
+    /**
+     * @throws InvalidStyleException
+     */
     private function list()
     {
         require_once ABSPATH . "components/abstract/Loader.php";
         require_once ABSPATH . "components/loader/DatabaseLoader.php";
         require_once ABSPATH . "components/loader/TypesLoader.php";
         global $db;
-        $db = \DatabaseLoader::call();
+        $db = DatabaseLoader::call();
 
-        \TypesLoader::call();
+        TypesLoader::call();
         echo self::header();
 
         echo $this->color->apply(self::INFO, " Listing all users" . PHP_EOL);

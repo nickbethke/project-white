@@ -50,7 +50,7 @@ function get_post_vars(): bool|array|null
     return filter_input_array(INPUT_POST);
 }
 
-function favicon()
+function favicon(): string
 {
     return '<link rel="apple-touch-icon" sizes="180x180" href="' . get_option('home_url') . 'content/img/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="' . get_option('home_url') . 'content/img/favicon/favicon-32x32.png">

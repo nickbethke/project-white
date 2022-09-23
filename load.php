@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 mysqli_report(MYSQLI_REPORT_ERROR);
 
 define("ABSPATH", dirname(__FILE__) . DIRECTORY_SEPARATOR);
-define("DEBUG", true);
+const DEBUG = true;
 
 
 if (version_compare(phpversion(), '8.1.0', '<')) {

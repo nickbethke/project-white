@@ -1,6 +1,6 @@
 <?php
 
-define("DB_NAME", 'ntkzmu_project_white');
-define("DB_USER", 'ntkzmu');
-define("DB_PASSWORD", 'gKNDvXpycUuM8m5k');
-define("DB_HOST", 'sql289.your-server.de');
+const DB_NAME = 'ntkzmu_project_white';
+const DB_USER = 'ntkzmu';
+const DB_PASSWORD = 'gKNDvXpycUuM8m5k';
+const DB_HOST = 'sql289.your-server.de';
