@@ -16,6 +16,7 @@
     "ext-mysqli": "*",
     "php-parallel-lint/php-console-color": "v1.0.1",
     "initphp/cli-table": "1.0",
-    "phpmailer/phpmailer": "v6.6.4"
+    "phpmailer/phpmailer": "v6.6.4",
+    "laravie/parser": "v2.1.5"
   }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<module>
+    <name>Test Module</name>
+    <description>A test module for Project White</description>
+    <author>jonick Team</author>
+    <author_uri>#</author_uri>
+    <version>1.0.0</version>
+</module>

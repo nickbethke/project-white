@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{$home_url}/inbox.php"
+                    <a href="{$home_url}inbox.php"
                        class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 {if $selected_page eq 'inbox'}sidebar-active-item{/if}">
                         <svg aria-hidden="true"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -34,26 +34,26 @@
                     </a>
                     {if $selected_page eq 'inbox' ||$selected_page eq 'inbox-new'||$selected_page eq 'inbox-archived'||$selected_page eq 'inbox-create'}
                         <ul id="dropdown-sidenav-inbox"
-                            class="py-2 space-y-2 text-sm">
+                            class="py-2 space-y-2 text-sm bg-gray-700">
                             <li>
-                                <a href="{$home_url}/inbox.php?action=create"
-                                   class="flex items-center p-2 pl-11 w-full font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700  {if $selected_page eq 'inbox-create'}sidebar-active-item{/if}">
+                                <a href="{$home_url}inbox.php?action=create"
+                                   class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600  {if $selected_page eq 'inbox-create'}sidebar-active-item{/if}">
                                     Create</a>
                             </li>
                             <li>
-                                <a href="{$home_url}/inbox.php?status=new"
-                                   class="flex items-center p-2 pl-11 w-full font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700  {if $selected_page eq 'inbox-new'}sidebar-active-item{/if}">
+                                <a href="{$home_url}inbox.php?status=new"
+                                   class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600  {if $selected_page eq 'inbox-new'}sidebar-active-item{/if}">
                                     New</a>
                             </li>
                             <li>
-                                <a href="{$home_url}/inbox.php?status=archived"
-                                   class="flex items-center p-2 pl-11 w-full font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700  {if $selected_page eq 'inbox-archived'}sidebar-active-item{/if}">Archived</a>
+                                <a href="{$home_url}inbox.php?status=archived"
+                                   class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600  {if $selected_page eq 'inbox-archived'}sidebar-active-item{/if}">Archived</a>
                             </li>
                         </ul>
                     {/if}
                 </li>
                 <li>
-                    <a href="{$home_url}/projects.php"
+                    <a href="{$home_url}projects.php"
                        class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 {if $selected_page eq 'projects'}sidebar-active-item{/if}">
                         <svg aria-hidden="true"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -85,32 +85,55 @@
                         </svg>
                     </button>
                     <ul id="dropdown-sidenav-user"
-                        class="{if !($selected_page|in_array:['user','user-billing']) }hidden{/if} py-2 space-y-2 text-sm">
+                        class="{if !($selected_page|in_array:['user','user-billing']) }hidden{/if} bg-gray-700 py-2 space-y-2 text-sm">
                         <li>
-                            <a href="{$home_url}/user.php"
-                               class="flex items-center p-2 pl-11 w-full font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700  {if $selected_page eq 'user'}sidebar-active-item{/if}">Account
+                            <a href="{$home_url}user.php"
+                               class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600  {if $selected_page eq 'user'}sidebar-active-item{/if}">Account
                                 Info</a>
                         </li>
                         <li>
-                            <a href="{$home_url}/user-billing.php"
-                               class="flex items-center p-2 pl-11 w-full font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {if $selected_page eq 'user-billing'}sidebar-active-item{/if}">Bills</a>
+                            <a href="{$home_url}user-billing.php"
+                               class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600 {if $selected_page eq 'user-billing'}sidebar-active-item{/if}">Bills</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{$home_url}/config.php"
-                       class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 {if $selected_page eq 'config'}sidebar-active-item{/if}">
+                    <button type="button"
+                            class="flex items-center p-2 w-full text-base font-normal text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-sidenav-user" data-collapse-toggle="dropdown-sidenav-config">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                              class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                             <path fill-rule="evenodd"
                                   d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 00-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 00-2.282.819l-.922 1.597a1.875 1.875 0 00.432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 000 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 00-.432 2.385l.922 1.597a1.875 1.875 0 002.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 002.28-.819l.923-1.597a1.875 1.875 0 00-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 000-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 00-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 00-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 00-1.85-1.567h-1.843zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z"
                                   clip-rule="evenodd"/>
                         </svg>
-                        <span class="ml-3">Configuration</span>
-                    </a>
+                        <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Configuration</span>
+                        <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <ul id="dropdown-sidenav-config"
+                        class="{if !($selected_page|in_array:['config','config-modules','config-info']) }hidden{/if} bg-gray-700 py-2 space-y-2 text-sm">
+                        <li>
+                            <a href="{$home_url}configuration/"
+                               class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600  {if $selected_page eq 'config'}sidebar-active-item{/if}">System</a>
+                        </li>
+                        <li>
+                            <a href="{$home_url}configuration/modules.php"
+                               class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600 {if $selected_page eq 'config-modules'}sidebar-active-item{/if}">Modules</a>
+                        </li>
+                        <li>
+                            <a href="{$home_url}configuration/info.php"
+                               class="flex items-center p-2 pl-11 w-full font-normal transition duration-75 group text-white hover:bg-gray-600  {if $selected_page eq 'config-info'}sidebar-active-item{/if}">System
+                                Info</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="{$home_url}/#logout"
+                    <a href="{$home_url}#logout"
                        class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 pw-action"
                        action="logout-prompt">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">

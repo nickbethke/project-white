@@ -94,20 +94,28 @@ class Mail extends Runnable
         $db = \DatabaseLoader::call();
         require_once ABSPATH . "components/classes/Options.php";
         require_once ABSPATH . "functions.php";
+
+        $host = \get_option('smtp_host');
+        $user = \get_option('smtp_user');
+        $password = \get_option('smtp_password');
+        $port = \get_option('smtp_port');
+        $encryption = \get_option('smtp_encryption');
+
+
         $smtp = new SMTP();
 
         echo "\t TESTING SMTP CONNECTION" . PHP_EOL . PHP_EOL;
 
-        echo "\t\t HOST: \t\t" . \get_option('smtp_host') . PHP_EOL;
-        echo "\t\t USER: \t\t" . \get_option('smtp_user') . PHP_EOL;
-        echo "\t\t PASSWORD: \t" . \get_option('smtp_password') . PHP_EOL;
-        echo "\t\t PORT: \t\t" . \get_option('smtp_port') . PHP_EOL;
-        echo "\t\t ENCRYPTION: \t" . \get_option('smtp_encryption') . PHP_EOL . PHP_EOL;
+        echo "\t\t HOST \t\t" . $host . PHP_EOL;
+        echo "\t\t USER \t\t" . $user . PHP_EOL;
+        echo "\t\t PASSWORD \t" . str_repeat('•', strlen($password)) . PHP_EOL;
+        echo "\t\t PORT \t\t" . $port . PHP_EOL;
+        echo "\t\t ENCRYPTION \t" . $encryption . PHP_EOL . PHP_EOL;
         echo "\t\t TESTING...";
 
         try {
             //Connect to an SMTP server
-            if (!$smtp->connect(\get_option('smtp_host'), \get_option('smtp_port'))) {
+            if (!$smtp->connect($host, $port)) {
                 throw new Exception('Connect failed');
             }
             //Say hello
@@ -118,8 +126,8 @@ class Mail extends Runnable
             $e = $smtp->getServerExtList();
             //If server can do TLS encryption, use it
             if (is_array($e) && array_key_exists('STARTTLS', $e)) {
-                $tlsok = $smtp->startTLS();
-                if (!$tlsok) {
+                $tls = $smtp->startTLS();
+                if (!$tls) {
                     throw new Exception('Failed to start encryption: ' . $smtp->getError()['error']);
                 }
                 //Repeat EHLO after STARTTLS
@@ -131,13 +139,13 @@ class Mail extends Runnable
             }
             //If server supports authentication, do it (even if no encryption)
             if (is_array($e) && array_key_exists('AUTH', $e)) {
-                if ($smtp->authenticate(\get_option('smtp_user'), \get_option('smtp_password'))) {
+                if ($smtp->authenticate($user, $password)) {
                     echo PHP_EOL . $this->color->apply(self::INFO, "\t\t ●") . ' Connected ok!' . PHP_EOL;
                 } else {
                     throw new Exception('Authentication failed: ' . $smtp->getError()['error']);
                 }
             }
-        } catch (Exception $e) {
+        } catch (Exception|InvalidStyleException $e) {
             echo PHP_EOL . $this->color->apply(self::ALERT, "\t\t ●") . ' SMTP error: ' . $e->getMessage() . PHP_EOL;
         }
 //Whatever happened, close the connection.

@@ -21,6 +21,7 @@ if (file_exists(ABSPATH . "_public/install.php")) {
     echo "Please install project white with the CLI in folder /bin via <br> php /bin/cli.php install";
     exit;
 }
+require_once ABSPATH . "version.php";
 
 require_once ABSPATH . "components/abstract/Loader.php";
 
@@ -47,7 +48,7 @@ require_once ABSPATH . "components/classes/Language.php";
 require_once ABSPATH . "functions.php";
 
 
-global $db, $optionCache, $notRepo;
+global $db, $optionCache, $notRepo, $modules, $pw_version;
 
 $db = DatabaseLoader::call();
 
@@ -56,10 +57,16 @@ $optionCache = CacheLoader::call();
 TypesLoader::call();
 $session = SessionLoader::call();
 
+require_once ABSPATH . "components/loader/ModulesLoader.php";
+$modules = ModulesLoader::call();
+$modules->load_modules();
+
 $smarty->assign("char_set", get_option('char_set'));
 $smarty->assign("lang_code", get_option('lang_code'));
 $smarty->assign("title", get_option('title', "Project White"));
 $smarty->assign("home_url", get_option('home_url'));
 $smarty->assign("selected_page", "home");
+
+$smarty->assign("pw_version", $pw_version);
 
 $smarty->assign('favicon', favicon());

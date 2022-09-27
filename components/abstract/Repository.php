@@ -5,8 +5,6 @@ abstract class Repository implements Iterator
     protected array $repo;
     protected int $position = 0;
 
-    public abstract function get(int $id);
-
     #[ReturnTypeWillChange] public function current()
     {
         return $this->repo[$this->position];
