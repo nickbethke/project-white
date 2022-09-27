@@ -8,11 +8,11 @@
 {include file='blocks/sidenav.block.tpl'}
 
 <main class="ml-72 px-4 pt-4">
-    <div class="border p-4 bg-white">
+    <div class="border border-b-0 p-4 bg-white">
         <h1 class="text-2xl">System Information</h1>
     </div>
     <div class="border p-4 bg-white">
-        <div class="grid grid-cols-3 gap-8">
+        <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-8">
             <div class="w-full">
                 <h2 class="text-xl p-4">System</h2>
                 <table class="w-full table table-auto border-collapse">

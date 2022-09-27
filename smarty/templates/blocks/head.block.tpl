@@ -11,6 +11,6 @@
             'home_url': '{$home_url}'
         }
     </script>
-    <link rel="stylesheet" href="{$home_url}content/css/main.out.css">
-    <script data-main="{$home_url}content/js/index" src="{$home_url}content/js/require.js"></script>
+    <link rel="stylesheet" href="{$home_url}content/css/main.out.css?time={$smarty.now}">
+    <script data-main="{$home_url}content/js/index" src="{$home_url}content/js/require.js?time={$smarty.now}"></script>
 {/block}

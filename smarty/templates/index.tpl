@@ -25,7 +25,7 @@
         </div>
 
     </div>
-    <div id="dropdown-index-overview" class="grid grid-cols-4 gap-4">
+    <div id="dropdown-index-overview" class="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 gap-4">
         <div class="bg-white border flex justify-start items-center">
             <div class="p-4 w-full">
                 <h3 class="text-xl">Project Status</h3>
