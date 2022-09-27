@@ -32,7 +32,7 @@
                 </table>
             </div>
             <div class="w-full">
-                <h2 class="text-xl p-4">Composer <p class="text-sm">{$composer_version}</p></h2>
+                <h2 class="text-xl p-4">Composer <p class="text-sm" >{$composer_version}</p></h2>
                 <table class="w-full table table-auto border-collapse">
                     <tr class="border-b">
                         <td class="p-4 font-bold">smarty/smarty</td>
