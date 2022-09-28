@@ -45,6 +45,11 @@ function get_option(string $option, mixed $default = false): mixed
     return Options::get_option($option, $default);
 }
 
+function update_option(string $name, mixed $value): bool
+{
+    return Options::update_option($name, $value);
+}
+
 function get_post_vars(): bool|array|null
 {
     return filter_input_array(INPUT_POST);

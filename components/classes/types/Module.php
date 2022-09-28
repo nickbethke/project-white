@@ -36,6 +36,27 @@ class Module
         return ABSPATH . "modules" . DIRECTORY_SEPARATOR . dirname($this->path) . DIRECTORY_SEPARATOR . "module.xml";
     }
 
+    public static function deactivate(string $module): void
+    {
+        $active = get_option("active_modules");
+
+        if (($key = array_search($module, $active)) !== false) {
+            unset($active[$key]);
+            update_option('active_modules', $active);
+        }
+    }
+
+    public static function activate(string $module): void
+    {
+        $active = get_option("active_modules");
+        if (($key = array_search($module, $active)) !== false) {
+            unset($active[$key]);
+            update_option('active_modules', $active);
+        }
+        $active[] = $module;
+        update_option('active_modules', $active);
+    }
+
     /**
      * @return string
      */
@@ -50,6 +71,14 @@ class Module
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionTrim(): string
+    {
+        return sizeof(explode(' ', $this->description)) > 30 ? join(" ", array_slice(explode(' ', $this->description), 0, 30)) . "..." : $this->description;
     }
 
     /**
@@ -85,6 +114,4 @@ class Module
     }
 
 
-    
-    
 }

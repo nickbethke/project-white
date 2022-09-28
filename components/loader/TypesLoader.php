@@ -10,7 +10,11 @@ class TypesLoader extends Loader
 
     protected function get_includes(): array
     {
-        return [ABSPATH . "components/classes/types/User.php"];
+        return [
+            ABSPATH . "components/classes/types/User.php",
+            ABSPATH . "components/classes/types/Module.php",
+            ABSPATH . "components/classes/types/Notification.php"
+        ];
     }
 
     public static function call(): mixed

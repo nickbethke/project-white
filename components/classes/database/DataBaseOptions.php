@@ -31,7 +31,8 @@ class DataBaseOptions extends DataBaseType
 
             $stmt = $db->prepare($SQL);
 
-            $stmt->bind_param("ssi", $name, $value, $autoload);
+            $auto = $autoload ? 1 : 0;
+            $stmt->bind_param("ssi", $name, $value, $auto);
 
             return $stmt->execute();
         } else {
@@ -56,7 +57,8 @@ class DataBaseOptions extends DataBaseType
 
     function option_exists($name): bool
     {
-        return boolval($this->get_option($name, false));
+        $check = random_bytes(16);
+        return !boolval($this->get_option($name, $check) == $check);
     }
 
     function get_option($option, $default): mixed
@@ -67,7 +69,6 @@ class DataBaseOptions extends DataBaseType
             return false;
         }
         if ($optionCache instanceof OptionsCache) {
-
             if ($optionCache->in_cache($option)) {
                 return $optionCache->get_cached_option($option);
             }
@@ -86,7 +87,46 @@ class DataBaseOptions extends DataBaseType
         if ($r->num_rows < 1) {
             return $default;
         } else {
-            return $r->fetch_assoc()['option_value'];
+            $v = $r->fetch_assoc()['option_value'];
+            if ($optionCache instanceof OptionsCache) {
+                return $optionCache->set_cached_option($option, $v);
+            }
+            return $v;
         }
+    }
+
+    public function get_all_options(): array
+    {
+        global $db;
+        $stmt = $db->prepare("SELECT `option_id`,`option_name`,`option_value`,`autoload` FROM `pw_options`");
+
+        $stmt->execute();
+
+        $stmt->bind_result($id, $name, $value, $autoload);
+
+        $options = [];
+        while ($stmt->fetch()) {
+            $options[$name] = [
+                "id" => $id,
+                "name" => $name,
+                "value" => $value,
+                "autoload" => $autoload
+            ];
+        }
+        return $options;
+    }
+
+    public function delete_option(string $name): bool
+    {
+        if ($this->option_exists($name)) {
+            global $db;
+            $SQL = "DELETE FROM pw_options WHERE option_name = ?";
+            $stmt = $db->prepare($SQL);
+            $stmt->bind_param("s", $name);
+
+            $stmt->execute();
+            return boolval($stmt->num_rows());
+        }
+        return false;
     }
 }

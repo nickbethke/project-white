@@ -7,7 +7,7 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<main class="ml-72 px-4 pt-4">
+<main class="lg:ml-72 px-4 pt-4">
     <div class="border p-4 bg-white">
         <h1 class="text-2xl">Account Informations</h1>
     </div>

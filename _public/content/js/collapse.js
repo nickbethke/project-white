@@ -19,3 +19,27 @@ items.forEach(e => {
             toggle.classList.toggle('hidden');
     })
 })
+
+
+let menuOpener = document.querySelector('#responsive-menu-opener');
+let menuCloser = document.querySelector('#responsive-menu-closer');
+
+['click', 'keydown'].forEach(function (e) {
+    menuOpener.addEventListener(e, e => {
+        e.preventDefault();
+        let sidebar = document.querySelector('#sidebar');
+        sidebar.classList.add('open');
+        let main = document.querySelector('main');
+        main.classList.add('sidebar-open');
+    });
+});
+
+['click', 'keydown'].forEach(function (e) {
+    menuCloser.addEventListener(e, e => {
+        e.preventDefault();
+        let sidebar = document.querySelector('#sidebar');
+        sidebar.classList.remove('open');
+        let main = document.querySelector('main');
+        main.classList.remove('sidebar-open');
+    });
+});

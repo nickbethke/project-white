@@ -23,7 +23,7 @@ class OptionsCache
     private function auto_init(): void
     {
         global $db;
-        $stmt = $db->prepare("SELECT `option_name`,`option_value` FROM `pw_options` WHERE `autoload` = 'yes'");
+        $stmt = $db->prepare("SELECT `option_name`,`option_value` FROM `pw_options` WHERE `autoload` = '1'");
 
         $stmt->execute();
 
@@ -31,7 +31,7 @@ class OptionsCache
 
         /* fetch values */
         while ($stmt->fetch()) {
-            $this->cache[$name] = $value;
+            $this->cache[$name] = ['value' => $value, 'count' => 1];
         }
     }
 
@@ -43,10 +43,25 @@ class OptionsCache
     public function get_cached_option($option): mixed
     {
         if ($this->in_cache($option)) {
-            return $this->cache[$option];
+            $this->cache[$option]['count']++;
+            return $this->cache[$option]['value'];
         } else {
             return null;
         }
+    }
+
+    public function get_cached_option_calls($option): mixed
+    {
+        if ($this->in_cache($option)) {
+            return $this->cache[$option]['count'];
+        } else {
+            return null;
+        }
+    }
+
+    public function set_cached_option($option, $value): void
+    {
+        $this->cache[$option] = ['value' => $value, 'count' => 1];
     }
 
     public function get_cache(): array

@@ -7,7 +7,7 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<main class="ml-72 px-4 pt-4">
+<main class="lg:ml-72 px-4 pt-4">
     <div class="bg-white border flex justify-start items-center p-4 mb-4 hover:bg-gray-100 hover:cursor-pointer"
          data-collapse-toggle="dropdown-index-overview">
         <h2>Overview</h2>

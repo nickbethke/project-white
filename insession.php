@@ -8,7 +8,7 @@ Debugger::getBar()->addPanel(new UserPanel());
 global $session, $smarty;
 if ($session->get_user() == null) {
     $session->logout();
-    header("Loaction: " . get_option("home_url"));
+    header("Location: " . get_option("home_url"));
     exit;
 }
 $user = $session->get_user();

@@ -36,7 +36,7 @@ class CachePanel implements IBarPanel
 	                   <table class="tracy-sortable">
                             <tbody>';
         foreach ($cached as $name => $value) {
-            $r .= "<tr><td>" . $name . "</td><td>" . $value . "</td></tr>";
+            $r .= "<tr><td>" . $name . "</td><td>" . $value['count'] . "</td><td>" . $value['value'] . "</td></tr>";
         }
 
         $r .= '</tbody>

@@ -7,7 +7,7 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<main class="p-4 ml-72">
+<main class="lg:ml-72 px-4 pt-4">
     <div class="p-4 bg-white border">
         <h1 class="text-2xl">New notification</h1>
     </div>

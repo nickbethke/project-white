@@ -47,6 +47,15 @@ class CMD
     /**
      * @throws InvalidStyleException
      */
+    public static function option($args): void
+    {
+        require_once ABSPATH . "components/classes/cli/Option.php";
+        CLI\Option::run($args);
+    }
+
+    /**
+     * @throws InvalidStyleException
+     */
     public static function run(): void
     {
         global $argv;

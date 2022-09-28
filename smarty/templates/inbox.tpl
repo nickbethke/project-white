@@ -7,7 +7,7 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<main class="ml-72 px-4 pt-4">
+<main class="lg:ml-72 px-4 pt-4">
     <div class="bg-white border flex justify-start items-center">
         <div class="h-14 border-r">
             <div class="p-4 pl-5 leading-[16px]">
@@ -17,7 +17,7 @@
         </div>
         <div class="border-r h-14">
             <input type="search"
-                   class="w-[500px] p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   class="lg:w-[500px] p-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    placeholder="Search..."/>
         </div>
         <a class="p-4 hover:bg-gray-50 border-r" href="{$home_url}/inbox.php?action=create">
@@ -58,20 +58,20 @@
         {else}
             {foreach $notification_repo as $not}
                 <a href="{$home_url}/inbox.php?view={$not->getID()}">
-                    <div class="relative bg-white border border-t-0 leading-4 flex justify-start items-center hover:bg-gray-50 hover:cursor-pointer {if $not->getStatus() eq 0}font-bold{/if}">
+                    <div class="relative bg-white border border-t-0 leading-4 flex justify-start items-center hover:bg-gray-50 hover:cursor-pointer relative {if $not->getStatus() eq 0}font-bold{/if}">
                         <div class="absolute w-1 h-full {if $not->getStatus() eq 0}bg-green-400{/if}"></div>
-                        <div class="p-4 pl-5 border-r">
+                        <div class="p-4 pl-5 border-r h-full">
                             <input type="checkbox"
                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2 leading-4"/>
                         </div>
-                        <div class="p-4 leading-4 w-64 border-r">
+                        <div class="p-4 leading-4 hidden lg:block lg:w-64 border-r">
                             {if $not->getFrom()->getId() == $user->getId()}
                                 Project White
                             {else}
                                 {$not->getFrom()->getFirstname()} {$not->getFrom()->getSurname()}
                             {/if}
                         </div>
-                        <div class="p-4 leading-4">
+                        <div class="p-4 w-[300px] lg:w-auto leading-4">
                             {$not->getTitle()}
                         </div>
                         <div class="p-4 ml-auto border-l">

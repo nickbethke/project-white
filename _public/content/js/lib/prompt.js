@@ -12,7 +12,7 @@ let Prompt = function () {
     }
     this.show = (_callback) => {
         this.container = document.createElement("div")
-        this.container.classList.add('fixed', 'top-1/2', 'left-1/2', 'min-w-[400px]', 'shadow-2xl')
+        this.container.classList.add('fixed', 'top-1/2', 'left-1/2', 'lg:min-w-[400px]', 'shadow-2xl', '-translate-y-1/2', '-translate-x-1/2')
 
         this.header = document.createElement('div');
         this.header.classList.add('py-2', 'px-4', 'bg-gray-800', 'text-white', 'uppercase', 'font-bold')

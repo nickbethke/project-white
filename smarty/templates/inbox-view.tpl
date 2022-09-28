@@ -7,7 +7,7 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<main class="p-4 ml-72">
+<main class="lg:ml-72 px-4 pt-4">
     <div class="border bg-white p-4 flex align-middle items-center leading-[1] font-normal">
         <div class="text-sm  px-2">{$notification->getDateTime()|date_format:"%d.%m.%Y %H:%M:%S"}</div>
     </div>

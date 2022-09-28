@@ -106,6 +106,12 @@
   .closeable-trigger-open .closeable-indicator-closed, .closeable-indicator-open {
     @apply hidden;
   }
+  #sidebar.open {
+    @apply block w-full h-screen;
+  }
+  main.sidebar-open {
+    @apply hidden;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

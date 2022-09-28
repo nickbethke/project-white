@@ -7,7 +7,7 @@
 
 {include file='blocks/sidenav.block.tpl'}
 
-<main class="ml-72 px-4 pt-4">
+<main class="lg:ml-72 px-4 pt-4">
     <div class="border border-b-0 p-4 bg-white">
         <h1 class="text-2xl">System Information</h1>
     </div>

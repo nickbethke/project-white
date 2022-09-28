@@ -12,6 +12,7 @@ class ModulesRepository extends Repository
 
     public function load_modules(): static
     {
+        $modules = \get_option("active_modules");
         return $this;
     }
 

@@ -28,8 +28,9 @@ class Install extends Runnable
      */
     #[NoReturn] public function __construct($args)
     {
+        echo Runnable::header();
+
         if ($args) {
-            echo Runnable::header();
             echo (new ConsoleColor())->apply(Runnable::WARNING, "\t > Action 'install::$args' missing. Use cli.php help\n\n");
             die();
         }
@@ -89,6 +90,8 @@ class Install extends Runnable
             $this->create_option('smtp_port', $smtp_port, true);
 
         }
+
+        $this->create_option('active_modules', array(), true);
 
         require_once ABSPATH . "components/loader/TypesLoader.php";
         TypesLoader::call();

@@ -1,10 +1,23 @@
 {block name="sidenav"}
-    <aside class="w-72 h-screen fixed" aria-label="Sidebar">
-        <div class="overflow-y-auto py-4 px-3 bg-gray-800 h-[100%]">
-            <a href="{$home_url}" class="flex items-center pl-2.5 mb-5">
-                <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
-            </a>
+    <aside id="sidebar"
+           class="hidden h-0 lg:block w-72 lg:h-screen fixed transition transition-all duration-150 ease-in-out"
+           aria-label="Sidebar">
+        <div class="overflow-y-auto p-4 bg-gray-800 h-[100%]">
+            <div class="flex justify-start">
+                <a href="#" class="block lg:hidden mr-4 lg:mr-0" id="responsive-menu-closer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                         class="w-6 h-6 transition duration-75 text-white group-hover:text-gray-900 group-hover:text-white">
+                        <path fill-rule="evenodd"
+                              d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <a href="{$home_url}" class="flex items-center lg:pl-2.5 mb-5">
+                    <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
+                </a>
+
+            </div>
             <ul class="space-y-2">
                 <li>
                     <a href="{$home_url}"
@@ -136,7 +149,8 @@
                     <a href="{$home_url}#logout"
                        class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 pw-action"
                        action="logout-prompt">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                             <path fill-rule="evenodd"
                                   d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z"
                                   clip-rule="evenodd"/>
@@ -160,4 +174,21 @@
             {/if}
         </div>
     </aside>
+    <div class="block lg:hidden w-full p-4 bg-gray-800 flex justify-start">
+        <a href="#" class="mr-4 lg:mr-0" id="responsive-menu-opener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                 class="w-6 h-6 transition duration-75 text-white group-hover:text-gray-900 group-hover:text-white">
+                <path fill-rule="evenodd"
+                      d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd"/>
+            </svg>
+        </a>
+        <div>
+            <a href="{$home_url}" class="flex items-center">
+                <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
+            </a>
+        </div>
+
+    </div>
 {/block}
