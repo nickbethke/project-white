@@ -1,12 +1,14 @@
-// TODO SMTP -> Mail sending -> Email validating
+TODO SMTP -> Mail sending -> Email validating
 
-// TODO Responsive Design
+TODO Responsive Design
 
-// TODO Modules Config Page
-// TODO Module loading
-// TODO Module overall functionality
-// TODO Modules dependencies
+TODO Modules Config Page
+TODO Module loading
+TODO Module overall functionality
+TODO Modules dependencies
 
-// TODO Options Page
+TODO Options Page
 
-// TODO User pages
+TODO User pages
+
+TODO Installation Script

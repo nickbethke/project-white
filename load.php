@@ -17,8 +17,10 @@ if (version_compare(phpversion(), '8.1.0', '<')) {
     exit;
 }
 
-if (file_exists(ABSPATH . "_public/install.php")) {
-    echo "Please install project white with the CLI in folder /bin via <br> php /bin/cli.php install";
+if (file_exists(ABSPATH . "_public/installer.php")) {
+    require_once ABSPATH . "functions.php";
+    echo "Please install project white with the CLI in folder /bin via <br> php /bin/cli.php install <br>";
+    echo "or run the installation script <a href='/installer.php'>installer.php</a>";
     exit;
 }
 require_once ABSPATH . "version.php";
@@ -48,7 +50,7 @@ require_once ABSPATH . "components/classes/Language.php";
 require_once ABSPATH . "functions.php";
 
 
-global $db, $optionCache, $notRepo, $modules, $pw_version;
+global $db, $optionCache, $notRepo, $modules;
 
 $db = DatabaseLoader::call();
 
@@ -67,6 +69,6 @@ $smarty->assign("title", get_option('title', "Project White"));
 $smarty->assign("home_url", get_option('home_url'));
 $smarty->assign("selected_page", "home");
 
-$smarty->assign("pw_version", $pw_version);
+$smarty->assign("pw_version", pw_version);
 
 $smarty->assign('favicon', favicon());

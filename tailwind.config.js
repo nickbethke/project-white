@@ -3,6 +3,7 @@ module.exports = {
     content: [
         "./smarty/templates/**/*.tpl",
         "./smarty/templates/*.tpl",
+        "./_public/installer.php",
         "./_public/content/js/*.js",
         "./_public/content/js/**/*.js"
     ],
