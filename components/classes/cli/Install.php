@@ -109,7 +109,7 @@ class Install extends Runnable
 
         require_once ABSPATH . "functions.php";
 
-        echo $this->color->apply(self::INFO, "\n\tProject White installed" . PHP_EOL . "\tvisit " . get_option('home_url') . " and login with your user information.");
+        echo $this->color->apply(self::INFO, "\n\tProject White installed" . PHP_EOL . "\tvisit " . get_option('home_url') . " and login with your user information." . PHP_EOL);
 
     }
 
