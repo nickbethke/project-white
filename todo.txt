@@ -10,5 +10,3 @@ TODO Modules dependencies
 TODO Options Page
 
 TODO User pages
-
-TODO Installation Script
