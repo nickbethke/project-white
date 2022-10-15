@@ -2,6 +2,8 @@
 
 namespace CLI;
 
+use DatabaseLoader;
+use Options;
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
 
@@ -79,6 +81,31 @@ abstract class Runnable
 \t██╔═══╝ ██╔══██╗██║   ██║██   ██║██╔══╝  ██║        ██║       ██║███╗██║██╔══██║██║   ██║   ██╔══╝  
 \t██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗╚██████╗   ██║       ╚███╔███╔╝██║  ██║██║   ██║   ███████╗
 \t╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝ ╚═════╝   ╚═╝        ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝\n\n";
+        }
+    }
+
+    /**
+     * @throws InvalidStyleException
+     */
+    public function create_option($name, $value, $autoload = false): void
+    {
+        require_once ABSPATH . "components/abstract/Loader.php";
+        require_once ABSPATH . "components/loader/DatabaseLoader.php";
+        require_once ABSPATH . "components/classes/Options.php";
+        global $db;
+        $db = DatabaseLoader::call();
+        $color = new ConsoleColor();
+        echo "\t\t\t Create option '" . $name . "' with value: " . $value . PHP_EOL;
+        if (Options::option_exists($name)) {
+            if (self::prompt($color->apply(self::WARNING, "\t\t\t\t ! Option already exists - override?"))) {
+                Options::update_option($name, $value, $autoload);
+                echo $color->apply(self::WARNING, "\t\t\t\t > Option updated" . PHP_EOL);
+            } else {
+                echo $color->apply(self::WARNING, "\t\t\t\t > Option not created" . PHP_EOL);
+            }
+        } else {
+            Options::set_option($name, $value, $autoload);
+            echo $color->apply(self::INFO, "\t\t\t\t > Option '" . $name . "' created" . PHP_EOL);
         }
     }
 }

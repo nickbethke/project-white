@@ -11,7 +11,11 @@ class NotificationLoader extends Loader
 
     protected function get_includes(): array
     {
-        return [ABSPATH . "components/abstract/Repository.php", ABSPATH . "components/classes/types/Notification.php", ABSPATH . "components/classes/NotificationRepository.php"];
+        return [
+            ABSPATH . "components/abstract/Repository.php",
+            ABSPATH . "components/classes/types/Notification.php",
+            ABSPATH . "components/classes/NotificationRepository.php"
+        ];
 
     }
 

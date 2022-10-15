@@ -5,6 +5,7 @@ namespace CLI;
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 class Mail extends Runnable
@@ -28,8 +29,10 @@ class Mail extends Runnable
             case "smtp::check":
                 $this->checkSMTP();
                 break;
+            case "smtp::configure":
+                $this->configureSMTP();
+                break;
             default:
-                echo Runnable::header();
                 echo $this->color->apply(Runnable::WARNING, "\t > Action '$action' missing. Use cli.php help\n\n");
                 break;
         }
@@ -151,4 +154,28 @@ class Mail extends Runnable
 //Whatever happened, close the connection.
         $smtp->quit();
     }
+
+    /**
+     * @throws InvalidStyleException
+     */
+    private function configureSMTP()
+    {
+        echo "\tConfigure SMTP" . PHP_EOL;
+
+        $smtp_host = self::input($this->color->apply(self::TODO, "\t\t SMTP Host"));
+        $this->create_option('smtp_host', $smtp_host, true);
+
+        $smtp_user = self::input($this->color->apply(self::TODO, "\t\t SMTP User"));
+        $this->create_option('smtp_user', $smtp_user, true);
+
+        $smtp_password = self::input($this->color->apply(self::TODO, "\t\t SMTP Password"));
+        $this->create_option('smtp_password', $smtp_password, true);
+
+        $smtp_encryption = self::input_select($this->color->apply(self::TODO, "\t\t SMTP Encryption"), "\t\t\t", PHPMailer::ENCRYPTION_SMTPS, PHPMailer::ENCRYPTION_STARTTLS);
+        $this->create_option('smtp_encryption', $smtp_encryption, true);
+
+        $smtp_port = self::input($this->color->apply(self::TODO, "\t\t SMTP Port"));
+        $this->create_option('smtp_port', $smtp_port, true);
+    }
+
 }

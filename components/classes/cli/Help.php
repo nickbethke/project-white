@@ -24,6 +24,7 @@ class Help extends Runnable
             echo "\t user::create::admin \t\t create an admin user" . PHP_EOL;
             echo "\t user::list \t\t\t lists all active users" . PHP_EOL . PHP_EOL;
             echo "\t mail::send::test \t\t send a test email" . PHP_EOL;
+            echo "\t mail::smtp::configure \t\t edit smtp configuration" . PHP_EOL;
             echo "\t mail::smtp::check \t\t check smtp connection" . PHP_EOL . PHP_EOL;
             echo "\t option::add \t\t\t add an option" . PHP_EOL;
             echo "\t option::update \t\t update an option" . PHP_EOL;

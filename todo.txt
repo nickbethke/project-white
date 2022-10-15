@@ -10,3 +10,5 @@ TODO Modules dependencies
 TODO Options Page
 
 TODO User pages
+
+TODO Install notification text

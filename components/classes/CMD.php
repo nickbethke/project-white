@@ -1,8 +1,4 @@
-<?php /** @noinspection PhpUnused */
-/** @noinspection PhpUnused */
-
-/** @noinspection PhpUnused */
-
+<?php
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor as ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
 

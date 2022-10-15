@@ -63,8 +63,6 @@ class Install extends Runnable
 
         echo "\t\t > Create Default Options" . PHP_EOL;
 
-        require_once ABSPATH . "components/classes/Options.php";
-
         $this->create_option('char_set', 'utf-8', true);
         $this->create_option('lang_code', 'en', true);
         $this->create_option('title', 'Project White', true);
@@ -103,7 +101,7 @@ class Install extends Runnable
 
         NotificationLoader::include();
 
-        Notification::create("Welcome to Project White", $admin_id, $admin_id, "");
+        Notification::create("Welcome to Project White", $admin_id, $admin_id, self::notification_content());
 
         file_exists(ABSPATH . "_public/install.php") && rename(ABSPATH . "_public/install.php", ABSPATH . "_public/install-backup.php");
 
@@ -111,6 +109,14 @@ class Install extends Runnable
 
         echo $this->color->apply(self::INFO, "\n\tProject White installed" . PHP_EOL . "\tvisit " . get_option('home_url') . " and login with your user information." . PHP_EOL);
 
+    }
+
+    public static function notification_content(): string
+    {
+        return "<div>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>   
+                    <p class='mt-4'>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
+                </div>";
     }
 
     /**
@@ -197,25 +203,6 @@ const DB_HOST= '$db_host';";
         }
         if ($success) {
             echo $this->color->apply(self::INFO, "\t\t\t > Table created" . PHP_EOL);
-        }
-    }
-
-    /**
-     * @throws InvalidStyleException
-     */
-    public function create_option($name, $value, $autoload = false): void
-    {
-        echo "\t\t\t Create option '" . $name . "' with value: " . $value . PHP_EOL;
-        if (Options::option_exists($name)) {
-            if (self::prompt($this->color->apply(self::WARNING, "\t\t\t\t ! Option already exists - override?"))) {
-                Options::update_option($name, $value, $autoload);
-                echo $this->color->apply(self::WARNING, "\t\t\t\t > Option updated" . PHP_EOL);
-            } else {
-                echo $this->color->apply(self::WARNING, "\t\t\t\t > Option not created" . PHP_EOL);
-            }
-        } else {
-            Options::set_option($name, $value, $autoload);
-            echo $this->color->apply(self::INFO, "\t\t\t\t > Option '" . $name . "' created" . PHP_EOL);
         }
     }
 
