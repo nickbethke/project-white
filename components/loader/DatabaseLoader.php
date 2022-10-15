@@ -36,4 +36,10 @@ class DatabaseLoader extends Loader
         $self->load_includes($self->get_includes());
         return $self->load();
     }
+
+    public static function load_only(): void
+    {
+        $self = new self;
+        $self->load_includes($self->get_includes());
+    }
 }

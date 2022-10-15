@@ -1,10 +1,30 @@
 {block name="sidenav"}
+    <header class="p-2 w-full bg-gray-700 flex justify-between md:grid md:grid-cols-12">
+        <div class="flex justify-start py-2">
+            <a href="{$home_url}" class="flex items-center lg:pl-2.5 ml-4 lg:ml-0">
+                <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
+            </a>
+        </div>
+        <div class="md:col-start-12 py-2 mr-2 text-right">
+            <a href="{$home_url}#logout"
+               class="flex items-center justify-end p-2 text-base font-normal text-white hover:bg-gray-700 pw-action"
+               action="logout-prompt">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                     class="w-6 h-6 transition duration-75 text-gray-400 hover:text-white">
+                    <path fill-rule="evenodd"
+                          d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+            </a>
+        </div>
+    </header>
     <aside id="sidebar"
            class="hidden h-0 lg:block w-72 lg:h-screen fixed transition transition-all duration-150 ease-in-out"
            aria-label="Sidebar">
         <div class="overflow-y-auto p-4 bg-gray-800 h-[100%]">
-            <div class="flex justify-start">
-                <a href="#" class="block lg:hidden mr-4 lg:mr-0" id="responsive-menu-closer">
+            <div class="mb-4 text-right px-2 block lg:hidden">
+                <a href="#" class="mr-4 lg:mr-0" id="responsive-menu-closer">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                          class="w-6 h-6 transition duration-75 text-white group-hover:text-gray-900 group-hover:text-white">
                         <path fill-rule="evenodd"
@@ -12,11 +32,6 @@
                               clip-rule="evenodd"/>
                     </svg>
                 </a>
-                <a href="{$home_url}" class="flex items-center lg:pl-2.5 mb-5">
-                    <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
-                </a>
-
             </div>
             <ul class="space-y-2">
                 <li>
@@ -145,19 +160,6 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="{$home_url}#logout"
-                       class="flex items-center p-2 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 pw-action"
-                       action="logout-prompt">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                            <path fill-rule="evenodd"
-                                  d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z"
-                                  clip-rule="evenodd"/>
-                        </svg>
-                        <span class="ml-3">Logout</span>
-                    </a>
-                </li>
             </ul>
             {if $user->getActivationKey() != ""}
                 <div id="dropdown-cta" class="p-4 mt-6 bg-green-900" role="alert">
@@ -175,7 +177,7 @@
         </div>
     </aside>
     <div class="block lg:hidden w-full p-4 bg-gray-800 flex justify-start">
-        <a href="#" class="mr-4 lg:mr-0" id="responsive-menu-opener">
+        <a href="#" class="ml-2 mr-4 lg:mr-0" id="responsive-menu-opener">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                  class="w-6 h-6 transition duration-75 text-white group-hover:text-gray-900 group-hover:text-white">
                 <path fill-rule="evenodd"
@@ -183,12 +185,5 @@
                       clip-rule="evenodd"/>
             </svg>
         </a>
-        <div>
-            <a href="{$home_url}" class="flex items-center">
-                <img src="{$home_url}content/img/logo.png" class="mr-3 h-6 sm:h-7" alt="Project White Logo"/>
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white uppercase">Project White</span>
-            </a>
-        </div>
-
     </div>
 {/block}

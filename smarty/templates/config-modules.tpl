@@ -11,7 +11,7 @@
     <div class="border p-4 bg-white mb-4">
         <h1 class="text-2xl">Modules</h1>
     </div>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {foreach $available_modules as $module}
             {if $module->getPath()|in_array:$active_modules}
                 {assign var="module_active" value="true"}
@@ -40,7 +40,7 @@
                         <span class="text-sm font-bold">{$module->getVersion()}</span>
                     </div>
                     <p class="text-sm"><a href="{$module->getAuthorUri()}">{$module->getAuthor()}</a></p>
-                    <p class="italic mt-4">{$module->getDescriptionTrim()}</p>
+                    <p class="italic mt-4 hidden md:block">{$module->getDescriptionTrim()}</p>
                 </div>
                 <div class="grid grid-cols-2 border-t text-center">
                     <a class="border-r p-2 text-sm transition duration-200 hover:bg-gray-50 hover:cursor-pointer"
