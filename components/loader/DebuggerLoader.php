@@ -29,6 +29,10 @@ class DebuggerLoader extends Loader
 
     protected function get_includes(): array
     {
-        return array(ABSPATH . "/components/classes/CachePanel.php", ABSPATH . "/components/classes/UserPanel.php", ABSPATH . "/vendor/autoload.php");
+        return [
+            ABSPATH . "/components/classes/debug/CachePanel.php",
+            ABSPATH . "/components/classes/debug/UserPanel.php",
+            ABSPATH . "/vendor/autoload.php"
+        ];
     }
 }
