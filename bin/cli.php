@@ -1,5 +1,7 @@
 <?php
 
+use PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException;
+
 define("ABSPATH", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
 require_once ABSPATH . "version.php";
@@ -16,5 +18,5 @@ require_once ABSPATH . "components/classes/CMD.php";
 
 try {
     CMD::run();
-} catch (\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException $e) {
+} catch (InvalidStyleException $e) {
 }

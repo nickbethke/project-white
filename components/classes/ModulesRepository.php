@@ -1,8 +1,5 @@
 <?php
 
-use Laravie\Parser\Xml\Document;
-use Laravie\Parser\Xml\Reader;
-
 class ModulesRepository extends Repository
 {
 

@@ -11,6 +11,9 @@ let Prompt = function () {
         this.message = msg
     }
     this.show = (_callback) => {
+        this.wrapper = document.createElement("div")
+        this.wrapper.classList.add('absolute', 'w-full', 'h-full', 'bg-slate-700/50', 'top-0', 'left-0');
+
         this.container = document.createElement("div")
         this.container.classList.add('fixed', 'top-1/2', 'left-1/2', 'lg:min-w-[400px]', 'shadow-2xl', '-translate-y-1/2', '-translate-x-1/2')
 
@@ -40,7 +43,8 @@ let Prompt = function () {
         this.container.append(this.content)
         this.container.append(this.footer)
 
-        document.body.append(this.container)
+        this.wrapper.append(this.container)
+        document.body.append(this.wrapper)
 
         this.accept.addEventListener('click', () => {
             this.hide();
@@ -52,6 +56,6 @@ let Prompt = function () {
         })
     }
     this.hide = () => {
-        this.container.remove()
+        this.wrapper.remove()
     }
 }
